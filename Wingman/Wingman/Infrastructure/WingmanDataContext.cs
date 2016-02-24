@@ -37,6 +37,6 @@ namespace Wingman.Infrastructure
             base.OnModelCreating(modelBuilder);
         }
 
-        public System.Data.Entity.DbSet<Wingman.Domain.WingmanUser> WingmanUsers { get; set; }
+        
     }
 }

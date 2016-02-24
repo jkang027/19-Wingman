@@ -17,11 +17,11 @@ namespace Wingman.Domain
     {
         public Gender Gender { get; set; }
         public int? NumberOfFlags { get; set; }
-        public int NumberOfKeys { get; set; }
-        public int NumberOfRatings { get; set; }
+        public int? NumberOfKeys { get; set; }
+        public int? NumberOfRatings { get; set; }
         public decimal? AverageRating { get; set; }
-        public int NumberOfAnswersPicked { get; set; }
-        public int NumberOfAnswersSubmitted { get; set; }
+        public int? NumberOfAnswersPicked { get; set; }
+        public int? NumberOfAnswersSubmitted { get; set; }
         
         public virtual ICollection<Submission> Submissions { get; set; }
         public virtual ICollection<Response> Responses { get; set; }

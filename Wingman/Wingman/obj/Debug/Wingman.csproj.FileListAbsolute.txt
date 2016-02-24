@@ -69,3 +69,9 @@ C:\dev\Origin Code Academy\19-Wingman\Wingman\WIngman\obj\Debug\WIngman.pdb
 C:\dev\Origin Code Academy\19-Wingman\Wingman\WIngman\obj\Debug\WIngman.Migrations.Initial.resources
 C:\dev\Origin Code Academy\19-Wingman\Wingman\WIngman\obj\Debug\Wingman.csproj.GenerateResource.Cache
 C:\dev\Origin Code Academy\19-Wingman\Wingman\WIngman\obj\Debug\Wingman.csprojResolveAssemblyReference.cache
+C:\dev\Origin Code Academy\19-Wingman\Wingman\WIngman\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\dev\Origin Code Academy\19-Wingman\Wingman\WIngman\bin\System.Web.Http.Owin.dll
+C:\dev\Origin Code Academy\19-Wingman\Wingman\WIngman\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\dev\Origin Code Academy\19-Wingman\Wingman\WIngman\bin\System.Web.Http.Owin.xml
+C:\dev\Origin Code Academy\19-Wingman\Wingman\WIngman\obj\Debug\Wingman.Migrations.reg.resources
+C:\dev\Origin Code Academy\19-Wingman\Wingman\WIngman\obj\Debug\Wingman.Migrations.GenderNonNullable.resources
