@@ -91,6 +91,7 @@ namespace Wingman.Controllers
             db.SaveChanges();
 
             response.ResponseId = dbResponse.ResponseId;
+            response.DateSubmitted = dbResponse.DateSubmitted;
 
             return CreatedAtRoute("DefaultApi", new { id = response.ResponseId }, response);
         }

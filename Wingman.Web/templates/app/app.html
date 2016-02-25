@@ -1,1 +1,69 @@
-﻿<h1>Working?</h1>
+﻿<link href="../../css/app/app.css" rel="stylesheet" />
+<nav class="navbar navbar-inverse navbar-fixed-top" id="navbar">
+    <div class="container" id="navbarcontent">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/app/dashboard">Wingman</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <div class="btn-group">
+                        <a href="/#/app/submission" class="navbarlink">Ask a Question</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="btn-group">
+                        <a href="/#/app/response" class="navbarlink">Be a Wingman</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="btn-group">
+                        <a href="/#/app/current" class="navbarlink">Your Activity</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown pull-right" id="profileDropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Profile
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" id="profileDropdown">
+                            <li class="profileList"><a href="#">Edit Profile</a></li>
+                            <li class="profileList"><a href="#"># of Keys</a></li>
+                            <li class="profileList"><a href="#">Buy More Keys</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="profileList"><a href="#">Log Out</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container">
+    <div ui-view id="uiview"></div>
+</div>
+
+<!--<div class="row">
+<!    <div class="sidebar-wrapper col-sm-12 col-md-3">
+<!        <div class="row">
+<!            <div class="col-sm-3 col-md-2 sidebar" id="sidebar">
+<!                <ul class="nav nav-sidebar">
+<!                    <li><a href="#" class="sidebarLink">Ask a question</a></li>
+<!                    <li><a href="#" class="sidebarLink">Be a Wingman </a></li>
+<!                    <li><a href="#" class="sidebarLink">View current shit</a></li>
+<!                </ul>
+<!            </div>
+<!        </div>
+<!    </div>
+<!    <div class="container-fluid col-sm-12 col-md-9" id="uiview">
+<!        <div ui-view></div>
+<!    </div>
+<!</div> -->

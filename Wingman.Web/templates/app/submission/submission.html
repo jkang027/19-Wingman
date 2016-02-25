@@ -1,0 +1,26 @@
+﻿<link href="../../../css/app/submission/submission.css" rel="stylesheet" />
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <i class="fa fa-question"></i> Ask a Question
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label>Context</label>
+            <textarea id="inputContext" class="form-control" placeholder="Enter context..." ng-model="newSubmission.Context"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Text Message</label>
+            <textarea id="inputTextMessage" class="form-control" placeholder="Enter message..." ng-model="newSubmission.TextMessage"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Topic</label>>
+            <textarea id="inputTopic" class="form-control" placeholder="Enter message..." ng-model="newSubmission.TopicId"></textarea>
+        </div>
+    </div>
+    <div class="panel-footer clearfix">
+        <button class="btn btn-success pull-right" ng-click="createSubmission()">Submit</button>
+    </div>
+</div>

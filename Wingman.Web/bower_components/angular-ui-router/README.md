@@ -6,11 +6,11 @@
 **[Guide](https://github.com/angular-ui/ui-router/wiki) |**
 **[API](http://angular-ui.github.io/ui-router/site) |**
 **[Sample](http://angular-ui.github.com/ui-router/sample/) ([Src](https://github.com/angular-ui/ui-router/tree/gh-pages/sample)) |**
-**[FAQ](https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions) |**
+**[FAQ](https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Submission) |**
 **[Resources](#resources) |**
 **[Report an Issue](https://github.com/angular-ui/ui-router/blob/master/CONTRIBUTING.md#report-an-issue) |**
 **[Contribute](https://github.com/angular-ui/ui-router/blob/master/CONTRIBUTING.md#contribute) |**
-**[Help!](http://stackoverflow.com/questions/ask?tags=angularjs,angular-ui-router) |**
+**[Help!](http://stackoverflow.com/submission/ask?tags=angularjs,angular-ui-router) |**
 **[Discuss](https://groups.google.com/forum/#!categories/angular-ui/router)**
 
 ---
@@ -234,7 +234,7 @@ myApp.config(function($stateProvider) {
 * [In-Depth Guide](https://github.com/angular-ui/ui-router/wiki)
 * [API Reference](http://angular-ui.github.io/ui-router/site)
 * [Sample App](http://angular-ui.github.com/ui-router/sample/) ([Source](https://github.com/angular-ui/ui-router/tree/gh-pages/sample))
-* [FAQ](https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions)
+* [FAQ](https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Submission)
 * [Slides comparing ngRoute to ui-router](http://slid.es/timkindberg/ui-router#/)
 * [UI-Router Extras / Addons](http://christopherthielen.github.io/ui-router-extras/#/home) (@christopherthielen)
  

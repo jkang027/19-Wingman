@@ -91,6 +91,7 @@ namespace Wingman.Controllers
             db.SaveChanges();
 
             submission.SubmissionId = dbSubmission.SubmissionId;
+            submission.DateOpened = dbSubmission.DateOpened;
 
             return CreatedAtRoute("DefaultApi", new { id = submission.SubmissionId }, submission);
         }
