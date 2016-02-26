@@ -1,0 +1,7 @@
+C:\work\github\jkang027\19-Wingman\Wingman\Wingman.Core\bin\Debug\Wingman.Core.dll
+C:\work\github\jkang027\19-Wingman\Wingman\Wingman.Core\bin\Debug\Wingman.Core.pdb
+C:\work\github\jkang027\19-Wingman\Wingman\Wingman.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\work\github\jkang027\19-Wingman\Wingman\Wingman.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\work\github\jkang027\19-Wingman\Wingman\Wingman.Core\obj\Debug\Wingman.Core.csprojResolveAssemblyReference.cache
+C:\work\github\jkang027\19-Wingman\Wingman\Wingman.Core\obj\Debug\Wingman.Core.dll
+C:\work\github\jkang027\19-Wingman\Wingman\Wingman.Core\obj\Debug\Wingman.Core.pdb

@@ -6,13 +6,19 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Wingman.Infrastructure;
-using Wingman.Models;
+using Wingman.Core.Models;
+using Wingman.Core.Infrastructure;
 
 namespace Wingman.Controllers
 {
     public class AccountsController : ApiController
     {
-        private AuthorizationRepository _repo = new AuthorizationRepository();
+        private readonly IAuthorizationRepository _authRepository;
+
+        public AccountsController(IAuthorizationRepository authRepository)
+        {
+            _authRepository = authRepository;
+        }
 
         [AllowAnonymous]
         [Route("api/accounts/register")]
@@ -25,7 +31,7 @@ namespace Wingman.Controllers
             }
 
             //Pass the Registration onto AuthRepository
-            var result = await _repo.RegisterUser(registration);
+            var result = await _authRepository.RegisterUser(registration);
 
             //Check to see the Registration was Successful
             if (result.Succeeded)
@@ -37,11 +43,6 @@ namespace Wingman.Controllers
                 return BadRequest("Registration form was invalid.");
             }
 
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            _repo.Dispose();
         }
     }
 }

@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using Wingman.Domain;
-using Wingman.Models;
+using Wingman.Core.Domain;
+using Wingman.Core.Models;
 
 namespace Wingman
 {
@@ -28,7 +28,7 @@ namespace Wingman
             CreateMaps();
 
         }
-        private static void CreateMaps()
+        public static void CreateMaps()
         {
             Mapper.CreateMap<Response, ResponseModel>();
             Mapper.CreateMap<Submission, SubmissionModel>();

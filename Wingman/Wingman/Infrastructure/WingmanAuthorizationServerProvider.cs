@@ -5,11 +5,27 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using Wingman.Core.Infrastructure;
 
 namespace Wingman.Infrastructure
 {
     public class WingmanAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {
+        private readonly Func<IAuthorizationRepository> _authRepositoryFactory;
+
+        private IAuthorizationRepository _authRepository
+        {
+            get
+            {
+                return _authRepositoryFactory.Invoke();
+            }
+        }
+
+        public WingmanAuthorizationServerProvider(Func<IAuthorizationRepository> authRepositoryFactory)
+        {
+            _authRepositoryFactory = authRepositoryFactory;
+        }
+
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
             context.Validated();
@@ -21,25 +37,22 @@ namespace Wingman.Infrastructure
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
             //Validate the User
-            using (var authRepository = new AuthorizationRepository())
+            var user = await _authRepository.FindUser(context.UserName, context.Password);
+
+            if (user == null)
             {
-                var user = await authRepository.FindUser(context.UserName, context.Password);
+                context.SetError("invalid_grant", "The username or password is incorrect");
 
-                if (user == null)
-                {
-                    context.SetError("invalid_grant", "The username or password is incorrect");
+                return;
+            }
+            else
+            {
+                var token = new ClaimsIdentity(context.Options.AuthenticationType);
 
-                    return;
-                }
-                else
-                {
-                    var token = new ClaimsIdentity(context.Options.AuthenticationType);
+                token.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
+                token.AddClaim(new Claim("role", "user"));
 
-                    token.AddClaim(new Claim("sub", context.UserName));
-                    token.AddClaim(new Claim("role", "user"));
-
-                    context.Validated(token);
-                }
+                context.Validated(token);
             }
         }
     }
