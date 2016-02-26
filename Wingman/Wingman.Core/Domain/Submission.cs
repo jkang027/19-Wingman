@@ -28,6 +28,7 @@ namespace Wingman.Core.Domain
         public Submission(SubmissionModel model)
         {
             this.Update(model);
+            this.DateOpened = DateTime.Now;
         }
 
         public void Update(SubmissionModel model)

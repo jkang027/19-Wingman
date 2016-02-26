@@ -1,4 +1,14 @@
-﻿#navbar {
+﻿body {
+    background-image: url(../../../../../../img/5049dacb.jpg); 
+    
+}
+
+#logoimage {
+    height: 2em;
+    width: 6em;
+}
+
+#navbar {
     background-color: black;
     color: white;
 }
@@ -10,10 +20,6 @@
 
 #responseButton:hover {
     color: white;
-}
-
-#profileDropdown {
-    margin-top: 8px;
 }
 
 .profileList {
@@ -32,35 +38,17 @@
     border: none;
 }
 
-#sidebar {
-    background-color:gray;
-    border-radius: 25px;
-    margin-top: 55px;
-    float: left;
-    overflow: auto;
-    position: fixed;
-    height:95%;
-    margin-left:25px
-}
-
-.sidebarLink {
-    color:black;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: x-large;
-    margin-bottom:10px;
-    margin-top:5px;
-}
-
 #uiview {
     margin-top: 75px;
 }
+
 .navbarlink {
-    padding: 25px 50px 25px 50px;
     color: white;
     text-decoration: none;
-    margin-top: 15px;
+    margin-top: 3px;
 }
+
 .btn-group {
-    margin-top: 15px;
+    margin-top: 28px;
 
 }
