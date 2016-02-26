@@ -1,35 +1,44 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Wingman.Domain;
-using Wingman.Infrastructure;
-using Wingman.Models;
+using Wingman.Core.Domain;
+using Wingman.Core.Infrastructure;
+using Wingman.Core.Models;
+using Wingman.Core.Repository;
 
 namespace Wingman.Controllers
 {
     public class SubmissionsController : ApiController
     {
-        private WingmanDataContext db = new WingmanDataContext();
+        //private WingmanDataContext db = new WingmanDataContext();
+
+        private readonly ISubmissionRepository _submissionRepository;
+        private readonly IUnitOfWork _unitOfWork;
+
+        //Constructor based dependency injection
+        public SubmissionsController(ISubmissionRepository submissionRepository, IUnitOfWork unitOfWork)
+        {
+            _submissionRepository = submissionRepository;
+            _unitOfWork = unitOfWork;
+        }
 
         // GET: api/Submissions
         public IEnumerable<SubmissionModel> GetSubmissions()
         {
-            return Mapper.Map<IEnumerable<SubmissionModel>>(db.Submissions);
+            // return Mapper.Map<IEnumerable<SubmissionModel>>(db.Submissions);
+            return Mapper.Map<IEnumerable<SubmissionModel>>(_submissionRepository.GetAll());
         }
 
         // GET: api/Submissions/5
         [ResponseType(typeof(Submission))]
         public IHttpActionResult GetSubmission(int id)
         {
-            Submission submission = db.Submissions.Find(id);
+            //Submission submission = db.Submissions.Find(id);
+            Submission submission = _submissionRepository.GetById(id);
+
             if (submission == null)
             {
                 return NotFound();
@@ -52,16 +61,19 @@ namespace Wingman.Controllers
                 return BadRequest();
             }
 
-            var dbSubmission = db.Submissions.Find(id);
+            var dbSubmission = _submissionRepository.GetById(id);
 
             dbSubmission.Update(submission);
-            db.Entry(dbSubmission).State = EntityState.Modified;
+
+            //db.Entry(dbSubmission).State = EntityState.Modified;
+            _submissionRepository.Update(dbSubmission);
 
             try
             {
-                db.SaveChanges();
+                //db.SaveChanges();
+                _unitOfWork.Commit();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception)
             {
                 if (!SubmissionExists(id))
                 {
@@ -88,8 +100,10 @@ namespace Wingman.Controllers
             var dbSubmission = new Submission(submission);
             dbSubmission.User = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
 
-            db.Submissions.Add(dbSubmission);
-            db.SaveChanges();
+            //db.Submissions.Add(dbSubmission);
+            //db.SaveChanges();
+            _submissionRepository.Add(dbSubmission);
+            _unitOfWork.Commit();
 
             submission.SubmissionId = dbSubmission.SubmissionId;
             submission.DateOpened = dbSubmission.DateOpened;
@@ -101,30 +115,26 @@ namespace Wingman.Controllers
         [ResponseType(typeof(Submission))]
         public IHttpActionResult DeleteSubmission(int id)
         {
-            Submission submission = db.Submissions.Find(id);
+            //Submission submission = db.Submissions.Find(id);
+            Submission submission = _submissionRepository.GetById(id);
+
             if (submission == null)
             {
                 return NotFound();
             }
 
-            db.Submissions.Remove(submission);
-            db.SaveChanges();
+            //db.Submissions.Remove(submission);
+            //db.SaveChanges();
+            _submissionRepository.Delete(submission);
+            _unitOfWork.Commit();
 
             return Ok(Mapper.Map<SubmissionModel>(submission));
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
         private bool SubmissionExists(int id)
         {
-            return db.Submissions.Count(e => e.SubmissionId == id) > 0;
+            //return db.Submissions.Count(e => e.SubmissionId == id) > 0;
+            return _submissionRepository.Any(e => e.SubmissionId == id);
         }
     }
 }

@@ -1,35 +1,39 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Wingman.Domain;
-using Wingman.Infrastructure;
-using Wingman.Models;
+using Wingman.Core.Domain;
+using Wingman.Core.Infrastructure;
+using Wingman.Core.Models;
+using Wingman.Core.Repository;
 
 namespace Wingman.Controllers
 {
     public class ResponsesController : ApiController
     {
-        private WingmanDataContext db = new WingmanDataContext();
+        private readonly IResponseRepository _responseRepository;
+        private readonly IUnitOfWork _unitOfWork;
+
+        public ResponsesController(IResponseRepository responseRepository, IUnitOfWork unitOfWork)
+        {
+            _responseRepository = responseRepository;
+            _unitOfWork = unitOfWork;
+        }
 
         // GET: api/Responses
         public IEnumerable<ResponseModel> GetResponses()
         {
-            return Mapper.Map<IEnumerable<ResponseModel>>(db.Responses);
+            return Mapper.Map<IEnumerable<ResponseModel>>(_responseRepository.GetAll());
         }
 
         // GET: api/Responses/5
         [ResponseType(typeof(Response))]
         public IHttpActionResult GetResponse(int id)
         {
-            Response response = db.Responses.Find(id);
+            Response response = _responseRepository.GetById(id);
+
             if (response == null)
             {
                 return NotFound();
@@ -52,16 +56,18 @@ namespace Wingman.Controllers
                 return BadRequest();
             }
 
-            var dbResponse = db.Responses.Find(id);
+            var dbResponse = _responseRepository.GetById(id);
 
             dbResponse.Update(response);
-            db.Entry(dbResponse).State = EntityState.Modified;
+
+            _responseRepository.Update(dbResponse);
+
 
             try
             {
-                db.SaveChanges();
+                _unitOfWork.Commit();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception)
             {
                 if (!ResponseExists(id))
                 {
@@ -87,8 +93,8 @@ namespace Wingman.Controllers
 
             var dbResponse = new Response(response);
 
-            db.Responses.Add(dbResponse);
-            db.SaveChanges();
+            _responseRepository.Add(dbResponse);
+            _unitOfWork.Commit();
 
             response.ResponseId = dbResponse.ResponseId;
             response.DateSubmitted = dbResponse.DateSubmitted;
@@ -100,30 +106,21 @@ namespace Wingman.Controllers
         [ResponseType(typeof(Response))]
         public IHttpActionResult DeleteResponse(int id)
         {
-            Response response = db.Responses.Find(id);
+            Response response = _responseRepository.GetById(id);
             if (response == null)
             {
                 return NotFound();
             }
 
-            db.Responses.Remove(response);
-            db.SaveChanges();
+            _responseRepository.Delete(response);
+            _unitOfWork.Commit();
 
             return Ok(Mapper.Map<ResponseModel>(response));
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
         private bool ResponseExists(int id)
         {
-            return db.Responses.Count(e => e.ResponseId == id) > 0;
+            return _responseRepository.Any(e => e.ResponseId == id);
         }
     }
 }
