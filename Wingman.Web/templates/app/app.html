@@ -2,45 +2,36 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" id="navbar">
     <div class="container" id="navbarcontent">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#wingman-navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#/app/dashboard">Wingman</a>
+            <a class="navbar-brand" href="#/app/dashboard"><img src="../../img/wingman_logo_black.gif" id="logoimage"/></a>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
+        <div id="wingman-navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li>
-                    <div class="btn-group">
-                        <a href="/#/app/submission" class="navbarlink">Ask a Question</a>
-                    </div>
+                    <a href="/#/app/submission" class="navbarlink">Ask a Question</a>
                 </li>
                 <li>
-                    <div class="btn-group">
-                        <a href="/#/app/response" class="navbarlink">Be a Wingman</a>
-                    </div>
+                    <a href="/#/app/response" class="navbarlink">Be a Wingman</a>
                 </li>
                 <li>
-                    <div class="btn-group">
-                        <a href="/#/app/current" class="navbarlink">Your Activity</a>
-                    </div>
+                    <a href="/#/app/current" class="navbarlink">Your Activity</a>
                 </li>
-                <li>
-                    <div class="dropdown pull-right" id="profileDropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Profile
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" id="profileDropdown">
-                            <li class="profileList"><a href="#">Edit Profile</a></li>
-                            <li class="profileList"><a href="#"># of Keys</a></li>
-                            <li class="profileList"><a href="#">Buy More Keys</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li class="profileList"><a href="#">Log Out</a></li>
-                        </ul>
-                    </div>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown navbarlink">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
+                    <ul class="dropdown-menu" id="profileDropdown">
+                        <li class="profileList"><a href="#">Edit Profile</a></li>
+                        <li class="profileList"><a href="#"># of Keys</a></li>
+                        <li class="profileList"><a href="#">Buy More Keys</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="profileList"><a href="#">Log Out</a></li>
+                    </ul>
                 </li>
             </ul>
         </div><!--/.nav-collapse -->
