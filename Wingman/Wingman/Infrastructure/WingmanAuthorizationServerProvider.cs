@@ -49,13 +49,8 @@ namespace Wingman.Infrastructure
             {
                 var token = new ClaimsIdentity(context.Options.AuthenticationType);
 
-<<<<<<< HEAD
                 token.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
                 token.AddClaim(new Claim("role", "user"));
-=======
-                    token.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-                    token.AddClaim(new Claim("role", "user"));
->>>>>>> 1074105449302d0be0044c590d439d4b77bb438c
 
                 context.Validated(token);
             }

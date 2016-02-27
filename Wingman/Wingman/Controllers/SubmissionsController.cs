@@ -98,7 +98,6 @@ namespace Wingman.Controllers
             }
 
             var dbSubmission = new Submission(submission);
-            dbSubmission.User = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
 
             //db.Submissions.Add(dbSubmission);
             //db.SaveChanges();
