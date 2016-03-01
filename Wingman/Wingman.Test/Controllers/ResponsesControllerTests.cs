@@ -24,11 +24,12 @@ namespace Wingman.Test.Controllers
                                        ResponseId = 1,
                                        ResponseText = "yadda yadda"
                                    });
+            var _mockUserRepository = new Mock<IWingmanUserRepository>();
 
 
             var _mockUnitOfWork = new Mock<IUnitOfWork>();
 
-            var controller = new ResponsesController(_mockResponseRepository.Object, _mockUnitOfWork.Object);
+            var controller = new ResponsesController(_mockResponseRepository.Object, _mockUnitOfWork.Object, _mockUserRepository.Object);
 
             // Act
             var httpResponse = controller.GetResponse(1);
@@ -60,9 +61,13 @@ namespace Wingman.Test.Controllers
                                    });
 
 
+            var _mockUserRepository = new Mock<IWingmanUserRepository>();
+
+
+
             var _mockUnitOfWork = new Mock<IUnitOfWork>();
 
-            var controller = new ResponsesController(_mockResponseRepository.Object, _mockUnitOfWork.Object);
+            var controller = new ResponsesController(_mockResponseRepository.Object, _mockUnitOfWork.Object, _mockUserRepository.Object);
 
             // Act
             var httpResponse = controller.GetResponse(2);

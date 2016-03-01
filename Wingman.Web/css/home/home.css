@@ -1,8 +1,10 @@
-﻿#navbar {
+﻿#bs-example-navbar-collapse-1, #navbar {
     background-color: black;
-    text-align: right;
-    height: 4em;
-    padding-top: 1em;
+}
+
+#navbar-brand {
+    background-color: black;
+    color: white;
 }
 
 #register {

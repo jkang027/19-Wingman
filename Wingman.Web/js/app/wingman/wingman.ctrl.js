@@ -3,7 +3,6 @@
     function activate() {
         $scope.submissions = SubmissionResource.query();
         $scope.responses = ResponseResource.query();
-     
     }
 
     $scope.createResponse = function () {
@@ -11,9 +10,6 @@
             $scope.newResponse = {};           
         });
     };
-
-
-
 
     activate();
 });

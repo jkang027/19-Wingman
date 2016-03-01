@@ -1,54 +1,46 @@
 ﻿body {
-    background-image: url(../../../../../../img/5049dacb.jpg); 
-    
+    background-image: url(../../../../../../img/5049dacb.jpg);
 }
 
+h1.page-header {
+    margin-top: -5px;
+}
+
+.sidebar {
+    padding-left: 0;
+    background-color: transparent;
+}
+
+.main-container { 
+    background-color: transparent;
+    padding-top: 15px;
+    margin-top: -20px;
+    border: none;
+}
+
+.footer {
+    width: 100%;
+}  
+
 #logoimage {
-    height: 2em;
-    width: 6em;
+    height: 1.8em;
+    width: 5em;
 }
 
 #navbar {
     background-color: black;
-    color: white;
-}
-
-#responseButton {
-    text-decoration: none;
-    color: white;
-}
-
-#responseButton:hover {
-    color: white;
-}
-
-.profileList {
-    background-color: white;
-    color: black;
-}
-
-#logo {
-    display: inline-block;
-    margin-top: 10px;
-}
-
-#dropdownMenu1 {
-    background-color: transparent;
-    color: white;
-    border: none;
-}
-
-#uiview {
-    margin-top: 75px;
 }
 
 .navbarlink {
     color: white;
-    text-decoration: none;
-    margin-top: 3px;
+    text-shadow: 1px 1px 2px white;
+    font-size: medium;
 }
 
-.btn-group {
-    margin-top: 28px;
+account-button {
+    color: white;
+}
 
+.footer {
+    color: white;
 }

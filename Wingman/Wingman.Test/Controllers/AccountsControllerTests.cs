@@ -6,33 +6,40 @@ using Wingman.Core.Infrastructure;
 using Wingman.Core.Models;
 using System.Web.Http.Results;
 using System.Threading.Tasks;
+using Wingman.Core.Repository;
+using Microsoft.AspNet.Identity;
 
 namespace Wingman.Test.Controllers
 {
     [TestClass]
     public class AccountsControllerTests
     {
-        //[TestMethod]
-        //public async Task RegisterShouldRegisterUser() // MethodShouldDoSomething
-        //{
-        //    // Arrange
-        //    var _authRepository = new Mock<IAuthorizationRepository>();
-        //    var controller = new AccountsController(_authRepository.Object);
+        [TestMethod]
+        public async Task RegisterShouldRegisterUser() // MethodShouldDoSomething
+        {
+            // Arrange
+            var _authRepository = new Mock<IAuthorizationRepository>();
+            _authRepository.Setup(a => a.RegisterUser(It.IsAny<RegistrationModel>()))
+                           .Returns(Task.FromResult(IdentityResult.Success));
 
-        //    // Act
-        //    var registration = new RegistrationModel
-        //    {
-        //        Username = "cameron",
-        //        Password = "password1234",
-        //        ConfirmPassword = "password1234",
-        //        EmailAddress = "cameron@wilby.com",
-        //        Gender = Core.Domain.Gender.Male
-        //    };
+            var _mockUserRepository = new Mock<IWingmanUserRepository>();
 
-        //    var response = await controller.Register(registration);
+            var controller = new AccountsController(_authRepository.Object, _mockUserRepository.Object);
 
-        //    // Assert
-        //    Assert.IsInstanceOfType(response, typeof(OkResult));
-        //}
+            // Act
+            var registration = new RegistrationModel
+            {
+                Username = "cameron",
+                Password = "Lidk38cmmm",
+                ConfirmPassword = "Lidk38cmmm",
+                EmailAddress = "cameron@wilby.com",
+                Gender = Core.Domain.Gender.Male
+            };
+
+            var response = await controller.Register(registration);
+
+            // Assert
+            Assert.IsInstanceOfType(response, typeof(OkResult));
+        }
     }
 }

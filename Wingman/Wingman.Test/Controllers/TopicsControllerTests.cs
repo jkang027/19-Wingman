@@ -11,85 +11,82 @@ using Wingman.Core.Domain;
 using System.Web.Http;
 using System.Net;
 using System.Net.Http;
+using System.Linq;
 
 namespace Wingman.Test.Controllers
 {
     [TestClass]
     public class TopicsControllerTests
     {
-        //TODO: Not working correctly
+        Mock<ITopicRepository> _mockTopicRepository;
+        Mock<IUnitOfWork> _mockUnitOfWork;
+        Mock<IWingmanUserRepository> _mockUserRepository;
+
+        TopicsController controller;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            WebApiConfig.CreateMaps();
+            _mockTopicRepository = new Mock<ITopicRepository>();
+
+            _mockUnitOfWork = new Mock<IUnitOfWork>();
+
+            _mockUserRepository = new Mock<IWingmanUserRepository>();
+
+
+            controller = new TopicsController(_mockTopicRepository.Object, _mockUnitOfWork.Object);
+        }
+
         [TestMethod]
         public void GetTopicsShouldReturnTopics()
         {
             //Arrange
-            WebApiConfig.CreateMaps();
-            var _mockTopicRepository = new Mock<ITopicRepository>();
             _mockTopicRepository.Setup(m => m.GetAll())
-                                 .Returns(new List<Topic>
-                                      {
+                     .Returns(new List<Topic>
+                          {
                                           new Topic { TopicId = 1,
                                                                   TopicName = "topic name"},
                                           new Topic { TopicId = 2,
                                                                   TopicName = "topic name2"}
-                                      });
-            var _mockUnitOfWork = new Mock<IUnitOfWork>();
-
-            var controller = new TopicsController(_mockTopicRepository.Object, _mockUnitOfWork.Object);
+                          });
 
             // Act
-            var httpResponse = controller.GetTopics();
+            var topics = controller.GetTopics();
 
             // Assert
-            Assert.IsNotNull(httpResponse);
+            Assert.IsNotNull(topics);
 
-            OkNegotiatedContentResult<List<TopicModel>> okHttpResponse = (OkNegotiatedContentResult<List<TopicModel>>)httpResponse;
-            Assert.IsNotNull(okHttpResponse);
-            Assert.IsNotNull(okHttpResponse.Content);
-
-            var domainResponse = okHttpResponse.Content;
-
-            Assert.AreEqual(domainResponse.Count, 2);
+            Assert.IsTrue(topics.Count() == 2);
         }
 
-        //TODO: Not working correctly
         [TestMethod]
         public void GetTopicsShouldReturnNotFound()
         {
             // Arrange
-            WebApiConfig.CreateMaps();
-            var _mockTopicRepository = new Mock<ITopicRepository>();
             _mockTopicRepository.Setup(m => m.GetAll())
                                           .Returns(new List<Topic>
                                           { });
-
-
-            var _mockUnitOfWork = new Mock<IUnitOfWork>();
-
-            var controller = new TopicsController(_mockTopicRepository.Object, _mockUnitOfWork.Object);
 
             // Act
             var httpResponse = controller.GetTopics();
 
             // Assert
             Assert.IsNotNull(httpResponse);
-            Assert.IsInstanceOfType(httpResponse, typeof(NotFoundResult));
+            Assert.IsTrue(httpResponse.Count() == 0);
 
         }
+
         [TestMethod]
         public void GetTopicShouldReturnTopic()
         {
             //Arrange
-            WebApiConfig.CreateMaps();
-            var _mockTopicRepository = new Mock<ITopicRepository>();
             _mockTopicRepository.Setup(m => m.GetById(1))
                                   .Returns(new Core.Domain.Topic
                                   {
                                       TopicId = 1,
                                       TopicName = "topic name"
                                   });
-            var _mockUnitOfWork = new Mock<IUnitOfWork>();
-
-            var controller = new TopicsController(_mockTopicRepository.Object, _mockUnitOfWork.Object);
 
             // Act
             var httpResponse = controller.GetTopic(1);
@@ -110,19 +107,12 @@ namespace Wingman.Test.Controllers
         public void GetTopicShouldReturnNotFound()
         {
             // Arrange
-            WebApiConfig.CreateMaps();
-            var _mockTopicRepository = new Mock<ITopicRepository>();
             _mockTopicRepository.Setup(m => m.GetById(1))
                                    .Returns(new Core.Domain.Topic
                                    {
                                        TopicId = 1,
                                        TopicName = "topic name"
                                    });
-
-
-            var _mockUnitOfWork = new Mock<IUnitOfWork>();
-
-            var controller = new TopicsController(_mockTopicRepository.Object, _mockUnitOfWork.Object);
 
             // Act
             var httpResponse = controller.GetTopic(2);
@@ -136,30 +126,24 @@ namespace Wingman.Test.Controllers
         public void PutTopicReturnStatusCode()
         {
             // Arrange
-            WebApiConfig.CreateMaps();
-            var _mockTopicRepository = new Mock<ITopicRepository>();
-                                    _mockTopicRepository.Setup(m => m.GetById(1))
-                                   .Returns(new Core.Domain.Topic
-                                   {
-                                       TopicId = 1,
-                                       TopicName = "topic name"
-                                   });
+            _mockTopicRepository.Setup(m => m.GetById(10))
+                                .Returns(new Topic
+                                {
+                                    TopicId = 10,
+                                    TopicName = "Product"
+                                });
 
-
-            var _mockUnitOfWork = new Mock<IUnitOfWork>();
-
-            var controller = new TopicsController(_mockTopicRepository.Object, _mockUnitOfWork.Object);
 
             // Act
-            TopicModel topic = new TopicModel();
-            topic.TopicId = 1;
-            topic.TopicName = "topic name changed";
+            IHttpActionResult actionResult = controller.PutTopic(10, new TopicModel { TopicId = 10, TopicName = "Product" });
+            var contentResult = actionResult as StatusCodeResult;
 
-            var httpResponse = controller.PutTopic(1, topic);
-            
             // Assert
-            Assert.IsNotNull(httpResponse);
-            Assert.AreEqual(httpResponse, 200);
+            _mockTopicRepository.Verify(tr => tr.Update(It.IsAny<Topic>()), Times.Once);
+            _mockUnitOfWork.Verify(uow => uow.Commit(), Times.Once);
+
+            Assert.IsNotNull(contentResult);
+            Assert.IsTrue(contentResult.StatusCode == HttpStatusCode.NoContent);
         }
 
     }
