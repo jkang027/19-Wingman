@@ -15,6 +15,7 @@ using Wingman.Core.Infrastructure;
 
 namespace Wingman.Controllers
 {
+    [Authorize]
     public class TopicsController : ApiController
     {
         //private WingmanDataContext db = new WingmanDataContext();

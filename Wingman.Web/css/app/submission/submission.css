@@ -15,5 +15,8 @@ ul.dropdown-menu li {
     cursor: pointer !important;
 }
 
+.submissionLabels {
+    font-size: large;
 
+} 
 

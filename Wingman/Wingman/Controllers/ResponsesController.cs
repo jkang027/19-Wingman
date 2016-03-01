@@ -12,6 +12,7 @@ using Wingman.Infrastructure;
 
 namespace Wingman.Controllers
 {
+    [Authorize]
     public class ResponsesController : BaseApiController
     {
         private readonly IResponseRepository _responseRepository;

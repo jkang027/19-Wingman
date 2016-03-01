@@ -64,6 +64,10 @@
     <Compile Include="Migrations\201602291726466_InitialAdd.Designer.cs">
       <DependentUpon>201602291726466_InitialAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603012308264_MadePropertiesDynamic.cs" />
+    <Compile Include="Migrations\201603012308264_MadePropertiesDynamic.Designer.cs">
+      <DependentUpon>201603012308264_MadePropertiesDynamic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ResponseRepository.cs" />
@@ -86,6 +90,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201602291726466_InitialAdd.resx">
       <DependentUpon>201602291726466_InitialAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603012308264_MadePropertiesDynamic.resx">
+      <DependentUpon>201603012308264_MadePropertiesDynamic.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

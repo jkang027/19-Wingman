@@ -1,9 +1,6 @@
-﻿angular.module('app').controller('ActivityController', function ($scope, SubmissionResource, TopicResource) {
+﻿angular.module('app').controller('ActivityController', function ($scope, ActivityResource, SubmissionResource, ResponseResource, TopicResource) {
 
-    function activate() {
-        $scope.submissions = SubmissionResource.query();
-        $scope.topics = TopicResource.query();
-    }
+
 
     $scope.topicselect = function (topic) {
         $scope.Topic = topic;
@@ -24,6 +21,22 @@
             $scope.Topic = {};
         });
     };
+
+
+
+
+
+    function activate() {
+        $scope.topics = TopicResource.query();
+
+        $scope.submissions = ActivityResource.query(function (data) {
+            $scope.submissions = data;
+            $scope.submissions.forEach(function (submission) {
+                submission.responses = ResponseResource.responses({ SubmissionId: submission.SubmissionId });
+            });
+        });
+    }
+
 
     activate();
 });

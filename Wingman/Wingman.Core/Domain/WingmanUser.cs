@@ -29,8 +29,20 @@ namespace Wingman.Core.Domain
         public int? NumberOfKeys { get; set; }
         public int? NumberOfRatings { get; set; }
         public decimal? AverageRating { get; set; }
-        public int? NumberOfAnswersPicked { get; set; }
-        public int? NumberOfAnswersSubmitted { get; set; }
+        public int? NumberOfAnswersPicked
+        {
+            get
+            {
+                return Responses.Count(r => r.Picked);
+            }
+        }
+        public int? NumberOfAnswersSubmitted
+        {
+            get
+            {
+                return Responses.Count();
+            }
+        }
         
         public virtual ICollection<UserRole> Roles { get; set; }
         public virtual ICollection<Submission> Submissions { get; set; }

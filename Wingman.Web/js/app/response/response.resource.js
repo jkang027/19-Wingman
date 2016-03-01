@@ -3,6 +3,11 @@
     {
     	'update': {
     		method: 'PUT'
+    	},
+    	'responses': {
+    	    url: apiUrl + 'submissions/:SubmissionId/responses',
+    	    method: 'GET',
+    	    isArray: true
     	}
     });
 });

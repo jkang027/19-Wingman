@@ -31,33 +31,79 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-6">
-            <img src="http://www.returnofkings.com/wp-content/uploads/2014/04/wingman.png" class="img-responsive" />
-            <h3>Need a second pair of eyes for that text? Wingman has you covered.</h3>
+            <div class="box">
+                <div class="box-icon">
+                    <span class="fa fa-5x fa-mobile"></span>
+                </div>
+                <div class="info">
+                    <h4 class="text-center">What We Do</h4>
+                    <p>Need a second pair of eyes for that text? Wingman has got you covered! Theres going to be a whole lot of text here but for now its just going to say lajfldksj alkdfj lasdkhflksdaj fklsdajf lkasdjf lkasdjflsjdalf kjasdlkf jasdlkjfklajfldksj alkdfj lasdkhflksdaj fklsdajf lkasdjf lkasdjflsjdalf kjasdlkf jasdlkjfklajfldksj alkdfj lasdkhflksdaj fklsdajf lkasdjf lkasdjflsjdalf kjasdlkf jasdlkjfklajfldksj alkdfj lasdkhflksdaj fklsdajf lkasdjf lkasdjflsjdalf kjasdlkf jasdlkjfklajfldksj alkdfj lasdkhflksdaj fklsdajf lkasdjf lkasdjflsjdalf kjasdlkf jasdlkjfklajfldksj alkdfj lasdkhflksdaj fklsdajf lkasdjf lkasdjflsjdalf kjasdlkf jasdlkjfklajfldksj alkdfj lasdkhflksdaj fklsdajf lkasdjf lkasdjflsjdalf kjasdlkf jasdlkjfklajfldksj alkdfj lasdkhflksdaj fklsdajf lkasdjf lkasdjflsjdalf kjasdlkf jasdlkjfklajfldksj alkdfj lasdkhflksdaj fklsdajf lkasdjf lkasdjflsjdalf kjasdlkf jasdlkjfklajfldksj alkdfj lasdkhflksdaj fklsdajf lkasdjf lkasdjflsjdalf kjasdlkf jasdlkjfklajfldksj alkdfj lasdkhflksdaj fklsdajf lkasdjf lkasdjflsjdalf kjasdlkf jasdlkjfk.</p>
+                </div>
+            </div>
         </div>
         <div class="col-xs-12 col-sm-6">
-            <form class="form-signin" id="register">
-                <h3 class="form-signin-heading">Please register</h3>
-                <label for="inputUsername" class="sr-only">Username</label>
-                <input type="text" id="inputUsername" class="form-control" placeholder="Username" ng-model="registration.Username" required autofocus>
-                <label for="inputEmail" class="sr-only">Email address</label>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" ng-model="registration.EmailAddress" required autofocus>
-                <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="registration.Password" required>
-                <label for="confirmPassword" class="sr-only">Password</label>
-                <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" ng-model="registration.ConfirmPassword" required>
-                <span>
-                    <input type="radio" ng-model="registration.Gender" value="1" name="gender" />
-                    Male <i class="fa fa-male"></i>
-                </span>
-                <span>
-                    <input type="radio" ng-model="registration.Gender" value="2" name="gender" />
-                    Female <i class="fa fa-female"></i>
-                </span>
-                <span>
-                    <input type="radio" ng-model="registration.Gender" value="3" name="gender" />
-                    Other <i class="fa fa-transgender-alt"></i>
-                </span>
-                <button class="btn btn-lg btn-block" type="submit" ng-click="register()" id="registerButton">Register</button>
+            <form class="form-horizontal">
+                <fieldset>
+                    <div id="legend">
+                        <h3>Register</h3>
+                    </div>
+                    <div class="control-group">
+                        <!-- Username -->
+                        <label class="control-label" for="username">Username</label>
+                        <div class="controls">
+                            <input type="text" id="inputUsername" class="form-control" placeholder="Username" ng-model="registration.Username" required autofocus>
+                            <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <!-- E-mail -->
+                        <label class="control-label" for="email">E-mail</label>
+                        <div class="controls">
+                            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" ng-model="registration.EmailAddress" required autofocus>
+                            <p class="help-block">Please provide your E-mail</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <!-- Password-->
+                        <label class="control-label" for="password">Password</label>
+                        <div class="controls">
+                            <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="registration.Password" required>
+                            <p class="help-block">Password should be at least 4 characters</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <!-- Password -->
+                        <label class="control-label" for="password_confirm">Password (Confirm)</label>
+                        <div class="controls">
+                            <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" ng-model="registration.ConfirmPassword" required>
+                            <p class="help-block">Please confirm password</p>
+                        </div>
+                    </div>
+
+                    <span>
+                        <input type="radio" ng-model="registration.Gender" value="1" name="gender" />
+                        <span class="radiotext">Male </span><i class="fa fa-male radioicon"></i>
+                    </span>
+                    <span>
+                        <input type="radio" ng-model="registration.Gender" value="2" name="gender" />
+                        <span class="radiotext">Female </span><i class="fa fa-female radioicon"></i>
+                    </span>
+                    <span>
+                        <input type="radio" ng-model="registration.Gender" value="3" name="gender" />
+                        <span class="radiotext">Other </span><i class="fa fa-transgender-alt radioicon"></i>
+                    </span>
+                    <p class="help-block">Please select your gender.</p>
+
+                    <div class="control-group">
+                        <!-- Button -->
+                        <div class="controls">
+                            <button class="btn btn-lg btn-block" type="submit" ng-click="register()" id="registerButton">Register</button>
+                        </div>
+                    </div>
+                </fieldset>
             </form>
         </div>
     </div>

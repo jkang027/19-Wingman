@@ -13,25 +13,37 @@ using Wingman.Infrastructure;
 
 namespace Wingman.Controllers
 {
+    [Authorize]
     public class SubmissionsController : BaseApiController
     {
         //private WingmanDataContext db = new WingmanDataContext();
 
         private readonly ISubmissionRepository _submissionRepository;
+        private readonly IResponseRepository _responseRepository;
         private readonly IUnitOfWork _unitOfWork;
 
         //Constructor based dependency injection
-        public SubmissionsController(ISubmissionRepository submissionRepository, IWingmanUserRepository wingmanUserRepository, IUnitOfWork unitOfWork) : base(wingmanUserRepository)
+        public SubmissionsController(ISubmissionRepository submissionRepository, IWingmanUserRepository wingmanUserRepository, IResponseRepository responseRepository, IUnitOfWork unitOfWork) : base(wingmanUserRepository)
         {
             _submissionRepository = submissionRepository;
             _unitOfWork = unitOfWork;
+            _responseRepository = responseRepository;
         }
 
         // GET: api/Submissions
         public IEnumerable<SubmissionModel> GetSubmissions()
         {
             //return Mapper.Map<IEnumerable<SubmissionModel>>(db.Submissions);
-            return Mapper.Map<IEnumerable<SubmissionModel>>(_submissionRepository.GetAll());          
+            return Mapper.Map<IEnumerable<SubmissionModel>>(_submissionRepository.GetAll());
+        }
+
+        //GET: api/Submission/5/Response
+        [Route("api/submissions/{SubmissionId}/responses")]
+        public IEnumerable<ResponseModel> GetResponseForSubmission(int SubmissionId)
+        {
+            return Mapper.Map<IEnumerable<ResponseModel>>(
+                _responseRepository.GetWhere(r => r.SubmissionId == SubmissionId)
+            );
         }
 
         // GET: api/Submissions/user
@@ -62,7 +74,7 @@ namespace Wingman.Controllers
 
             return Ok(Mapper.Map<SubmissionModel>(submission));
         }
-       
+
         // PUT: api/Submissions/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutSubmission(int id, SubmissionModel submission)

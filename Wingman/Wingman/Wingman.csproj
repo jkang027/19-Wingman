@@ -151,6 +151,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\ResponsesController.cs" />
     <Compile Include="Controllers\SubmissionsController.cs" />
     <Compile Include="Controllers\TopicsController.cs" />

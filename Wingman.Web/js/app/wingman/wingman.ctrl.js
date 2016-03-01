@@ -1,13 +1,18 @@
 ﻿angular.module('app').controller('WingmanController', function ($scope, SubmissionResource, ResponseResource) {
-    //TODO: Add Kanban stuff.
+
+    $scope.newResponse = {};
+
     function activate() {
         $scope.submissions = SubmissionResource.query();
         $scope.responses = ResponseResource.query();
     }
 
-    $scope.createResponse = function () {
-        ResponseResource.save($scope.newResponse, function () {
-            $scope.newResponse = {};           
+
+    $scope.addResponse = function (submission) {
+        submission.newResponse.SubmissionId = submission.SubmissionId;
+        ResponseResource.save(submission.newResponse, function () {
+            alert('Answer saved');
+            activate();
         });
     };
 

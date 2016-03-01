@@ -27,6 +27,7 @@ namespace Wingman.Core.Domain
         public Response(ResponseModel model)
         {
             this.Update(model);
+            this.DateSubmitted = DateTime.Now;
         }
 
         public void Update(ResponseModel model)

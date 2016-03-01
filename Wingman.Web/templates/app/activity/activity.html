@@ -1,17 +1,20 @@
 ﻿<link href="../../../css/app/activity/activity.css" rel="stylesheet" />
 
 <div class="row">
-    <div class="col-xs-12" ng-repeat="submission in submissions">
+    <div class="col-xs-12" ng-repeat="submission in submissions | orderBy:'DateOpened':true"">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="headers">Topic: </div><span>{{submission.Topic.TopicName}} </span>
+                <div class="headers">Context: </div><span>{{submission.Context}} </span>
                 <div class="headers">Text Message: </div><span>{{submission.TextMessage}}</span>
                 <div class="headers">Date Submitted: </div>
                 <span>{{submission.DateOpened | date: 'shortDate'}}</span>
                 <div><button class="btn btn-default" type="submit" ng-click="clicked = !clicked">{{clicked ? 'Hide' : 'Show'}} Answers</button></div>
             </div>
             <div class="panel-body" ng-show="clicked">
-                ANSWERS ANSWERS ANSWERS
+                <div ng-repeat="response in submission.responses">
+                    <div class="headers">Answer: </div><p>{{response.ResponseText}} </p>
+                </div>
             </div>
         </div>
     </div>
