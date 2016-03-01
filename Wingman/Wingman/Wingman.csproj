@@ -154,6 +154,7 @@
     <Compile Include="Controllers\ResponsesController.cs" />
     <Compile Include="Controllers\SubmissionsController.cs" />
     <Compile Include="Controllers\TopicsController.cs" />
+    <Compile Include="Infrastructure\BaseApiController.cs" />
     <Compile Include="Infrastructure\WingmanAuthorizationServerProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

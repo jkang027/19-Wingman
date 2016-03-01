@@ -8,10 +8,12 @@ using Wingman.Core.Domain;
 using Wingman.Core.Infrastructure;
 using Wingman.Core.Models;
 using Wingman.Core.Repository;
+using Wingman.Data.Infrastructure;
+using Wingman.Infrastructure;
 
 namespace Wingman.Controllers
 {
-    public class SubmissionsController : ApiController
+    public class SubmissionsController : BaseApiController
     {
         //private WingmanDataContext db = new WingmanDataContext();
 
@@ -19,7 +21,7 @@ namespace Wingman.Controllers
         private readonly IUnitOfWork _unitOfWork;
 
         //Constructor based dependency injection
-        public SubmissionsController(ISubmissionRepository submissionRepository, IUnitOfWork unitOfWork)
+        public SubmissionsController(ISubmissionRepository submissionRepository, IWingmanUserRepository wingmanUserRepository, IUnitOfWork unitOfWork) : base(wingmanUserRepository)
         {
             _submissionRepository = submissionRepository;
             _unitOfWork = unitOfWork;
@@ -28,8 +30,22 @@ namespace Wingman.Controllers
         // GET: api/Submissions
         public IEnumerable<SubmissionModel> GetSubmissions()
         {
-            // return Mapper.Map<IEnumerable<SubmissionModel>>(db.Submissions);
-            return Mapper.Map<IEnumerable<SubmissionModel>>(_submissionRepository.GetAll());
+            //return Mapper.Map<IEnumerable<SubmissionModel>>(db.Submissions);
+            return Mapper.Map<IEnumerable<SubmissionModel>>(_submissionRepository.GetAll());          
+        }
+
+        // GET: api/Submissions/user
+        [Route("api/Submissions/user")]
+        public IEnumerable<SubmissionModel> GetUserSubmissions()
+        {
+            return Mapper.Map<IEnumerable<SubmissionModel>>(_submissionRepository.GetWhere(s => s.UserId == CurrentUser.Id));
+        }
+
+        // GET: api/Submissions/user
+        [Route("api/Submissions/open")]
+        public IEnumerable<SubmissionModel> GetOpenSubmissions()
+        {
+            return Mapper.Map<IEnumerable<SubmissionModel>>(_submissionRepository.GetWhere(s => s.DateClosed == null));
         }
 
         // GET: api/Submissions/5
@@ -46,7 +62,7 @@ namespace Wingman.Controllers
 
             return Ok(Mapper.Map<SubmissionModel>(submission));
         }
-
+       
         // PUT: api/Submissions/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutSubmission(int id, SubmissionModel submission)
@@ -101,6 +117,7 @@ namespace Wingman.Controllers
 
             //db.Submissions.Add(dbSubmission);
             //db.SaveChanges();
+            dbSubmission.UserId = CurrentUser.Id;
             _submissionRepository.Add(dbSubmission);
             _unitOfWork.Commit();
 

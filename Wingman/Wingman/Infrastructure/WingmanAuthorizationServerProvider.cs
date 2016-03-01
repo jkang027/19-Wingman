@@ -11,15 +11,9 @@ namespace Wingman.Infrastructure
 {
     public class WingmanAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {
-        private readonly Func<IAuthorizationRepository> _authRepositoryFactory;
+        private Func<IAuthorizationRepository> _authRepositoryFactory;
 
-        private IAuthorizationRepository _authRepository
-        {
-            get
-            {
-                return _authRepositoryFactory.Invoke();
-            }
-        }
+        private IAuthorizationRepository _authRepository => _authRepositoryFactory.Invoke();
 
         public WingmanAuthorizationServerProvider(Func<IAuthorizationRepository> authRepositoryFactory)
         {
@@ -28,7 +22,10 @@ namespace Wingman.Infrastructure
 
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
-            context.Validated();
+            await Task.Factory.StartNew(() =>
+            {
+                context.Validated();
+            });
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
@@ -45,15 +42,14 @@ namespace Wingman.Infrastructure
 
                 return;
             }
-            else
-            {
-                var token = new ClaimsIdentity(context.Options.AuthenticationType);
+            
+            var token = new ClaimsIdentity(context.Options.AuthenticationType);
 
-                token.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-                token.AddClaim(new Claim("role", "user"));
+            token.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
+            token.AddClaim(new Claim("role", "user"));
 
-                context.Validated(token);
-            }
+            context.Validated(token);
+            
         }
     }
 }

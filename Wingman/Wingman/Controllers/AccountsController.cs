@@ -8,14 +8,16 @@ using System.Web.Http;
 using Wingman.Infrastructure;
 using Wingman.Core.Models;
 using Wingman.Core.Infrastructure;
+using Wingman.Core.Repository;
+using AutoMapper;
 
 namespace Wingman.Controllers
 {
-    public class AccountsController : ApiController
+    public class AccountsController : BaseApiController
     {
         private readonly IAuthorizationRepository _authRepository;
 
-        public AccountsController(IAuthorizationRepository authRepository)
+        public AccountsController(IAuthorizationRepository authRepository, IWingmanUserRepository wingmanUserRepository) : base(wingmanUserRepository)
         {
             _authRepository = authRepository;
         }
@@ -42,7 +44,6 @@ namespace Wingman.Controllers
             {
                 return BadRequest("Registration form was invalid.");
             }
-
         }
     }
 }

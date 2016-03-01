@@ -27,6 +27,7 @@ namespace Wingman.Data.Infrastructure
 
         public void Commit()
         {
+
             DataContext.SaveChanges();
         }
     }

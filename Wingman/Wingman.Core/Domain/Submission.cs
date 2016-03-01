@@ -20,6 +20,8 @@ namespace Wingman.Core.Domain
         public virtual WingmanUser User { get; set; }
         public virtual Topic Topic { get; set; }
 
+
+
         public Submission()
         {
 
@@ -29,6 +31,7 @@ namespace Wingman.Core.Domain
         {
             this.Update(model);
             this.DateOpened = DateTime.Now;
+            
         }
 
         public void Update(SubmissionModel model)

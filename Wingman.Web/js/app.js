@@ -10,8 +10,9 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $http
         .state('app', { url: '/app', templateUrl: '/templates/app/app.html', controller: 'AppController' })
             .state('app.dashboard', { url: '/dashboard', templateUrl: '/templates/app/dashboard/dashboard.html', controller: 'DashboardController' })
             .state('app.submission', { url: '/submission', templateUrl: '/templates/app/submission/submission.html', controller: 'SubmissionController' })
-            .state('app.response', { url: '/response', templateUrl: '/templates/app/response/response.html', controller: 'ResponseController' })
+            .state('app.wingman', { url: '/response', templateUrl: '/templates/app/wingman/wingman.html', controller: 'WingmanController' })
             .state('app.profile', { url: '/profile', templateUrl: '/templates/app/profile/profile.html', controller: 'ProfileController' })
+            .state('app.activity', { url: '/activity', templateUrl: '/templates/app/activity/activity.html', controller: 'ActivityController' })
     ;
 });
 

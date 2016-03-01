@@ -33,8 +33,8 @@ namespace PropertyManager.Api
             {
                 DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container)
             };
-            WebApiConfig.Register(config);
 
+            WebApiConfig.Register(config);
             app.UseCors(CorsOptions.AllowAll);
             app.UseWebApi(config);
         }
@@ -43,11 +43,6 @@ namespace PropertyManager.Api
         {
             Func<IAuthorizationRepository> authRepositoryFactory = container.GetInstance<IAuthorizationRepository>;
 
-            //Configure Authentication
-            var authenticationOptions = new OAuthBearerAuthenticationOptions();
-            app.UseOAuthBearerAuthentication(authenticationOptions);
-
-            //Configure Authorization
             var authorizationOptions = new OAuthAuthorizationServerOptions
             {
                 AllowInsecureHttp = true,
@@ -55,7 +50,10 @@ namespace PropertyManager.Api
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
                 Provider = new WingmanAuthorizationServerProvider(authRepositoryFactory)
             };
+
+            // Token Generation
             app.UseOAuthAuthorizationServer(authorizationOptions);
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
         }
 
         public Container ConfigureSimpleInjector(IAppBuilder app)
@@ -65,19 +63,22 @@ namespace PropertyManager.Api
             container.Options.DefaultScopedLifestyle = new ExecutionContextScopeLifestyle();
 
             container.Register<IDatabaseFactory, DatabaseFactory>(Lifestyle.Scoped);
-            container.Register<IUserStore<WingmanUser>, UserStore>(Lifestyle.Scoped);
             container.Register<IUnitOfWork, UnitOfWork>();
 
+
+            
             container.Register<IResponseRepository, ResponseRepository>();
             container.Register<IRoleRepository, RoleRepository>();
             container.Register<ISubmissionRepository, SubmissionRepository>();
             container.Register<ITopicRepository, TopicRepository>();
             container.Register<IUserRoleRepository, UserRoleRepository>();
             container.Register<IWingmanUserRepository, WingmanUserRepository>();
-            container.Register<IAuthorizationRepository, AuthorizationRepository>();
+            container.Register<IUserStore<WingmanUser, string>, UserStore>(Lifestyle.Scoped);
+            container.Register<IAuthorizationRepository, AuthorizationRepository>(Lifestyle.Scoped);
 
             // more code to facilitate a scoped lifestyle
-            app.Use(async (context, next) => {
+            app.Use(async (context, next) => 
+            {
                 using (container.BeginExecutionContextScope())
                 {
                     await next();

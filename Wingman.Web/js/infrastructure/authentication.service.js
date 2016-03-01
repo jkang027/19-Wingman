@@ -1,6 +1,6 @@
 ﻿angular.module('app').factory('AuthenticationService', function ($http, $q, localStorageService, apiUrl) {
     var state = {
-        authorized: false
+        authorized: true
     };
 
     function initialize() {

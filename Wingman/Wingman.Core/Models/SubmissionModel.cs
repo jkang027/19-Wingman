@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Wingman.Core.Domain;
 
 namespace Wingman.Core.Models
 {
@@ -14,5 +15,7 @@ namespace Wingman.Core.Models
         public string TextMessage { get; set; }
         public DateTime DateOpened { get; set; }
         public DateTime? DateClosed { get; set; }
+
+        public virtual TopicModel Topic { get; set; }
     }
 }

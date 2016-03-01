@@ -1,0 +1,23 @@
+﻿<link href="../../../css/app/wingman/wingman.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-xs-12" ng-repeat="submission in submissions">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="headers">Topic: </div><span>{{submission.Topic.TopicName}} </span>
+                <div class="headers">Text Message: </div><span>{{submission.TextMessage}}</span>
+                <div class="headers">Date Submitted: </div>
+                <span>{{submission.DateOpened | date: 'shortDate' }}</span>
+                <div><button class="btn btn-default" type="submit" ng-click="clicked = !clicked">{{clicked ? 'Hide' : 'Give'}} Answer</button></div>
+            </div>
+            <div class="panel-body" ng-show="clicked">
+                <div class="form-group">
+                    <label>Submit your answer</label>
+                    <textarea id="inputTextMessage" class="form-control" placeholder="Enter message..." ng-model="newResponse.ResponseText"></textarea>
+                </div>
+                <button class="btn btn-success pull-right" ng-click="createResponse()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+

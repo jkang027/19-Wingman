@@ -8,15 +8,16 @@ using Wingman.Core.Domain;
 using Wingman.Core.Infrastructure;
 using Wingman.Core.Models;
 using Wingman.Core.Repository;
+using Wingman.Infrastructure;
 
 namespace Wingman.Controllers
 {
-    public class ResponsesController : ApiController
+    public class ResponsesController : BaseApiController
     {
         private readonly IResponseRepository _responseRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public ResponsesController(IResponseRepository responseRepository, IUnitOfWork unitOfWork)
+        public ResponsesController(IResponseRepository responseRepository , IUnitOfWork unitOfWork, IWingmanUserRepository wingmanUserRepository) : base(wingmanUserRepository)
         {
             _responseRepository = responseRepository;
             _unitOfWork = unitOfWork;
@@ -93,6 +94,7 @@ namespace Wingman.Controllers
 
             var dbResponse = new Response(response);
 
+            dbResponse.UserId = CurrentUser.Id;
             _responseRepository.Add(dbResponse);
             _unitOfWork.Commit();
 

@@ -60,9 +60,9 @@
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="Infrastructure\UserStore.cs" />
     <Compile Include="Infrastructure\WingmanDataContext.cs" />
-    <Compile Include="Migrations\201602262201340_InitialCreate.cs" />
-    <Compile Include="Migrations\201602262201340_InitialCreate.Designer.cs">
-      <DependentUpon>201602262201340_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201602291726466_InitialAdd.cs" />
+    <Compile Include="Migrations\201602291726466_InitialAdd.Designer.cs">
+      <DependentUpon>201602291726466_InitialAdd.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,8 +84,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602262201340_InitialCreate.resx">
-      <DependentUpon>201602262201340_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602291726466_InitialAdd.resx">
+      <DependentUpon>201602291726466_InitialAdd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

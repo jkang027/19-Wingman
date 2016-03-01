@@ -12,12 +12,12 @@ using Wingman.Infrastructure;
 namespace Wingman.Data.Infrastructure
 {
     public class UserStore : Disposable,
-                             IUserStore<WingmanUser>,
-                             IUserPasswordStore<WingmanUser>,
-                             IUserSecurityStampStore<WingmanUser>,
-                             IUserRoleStore<WingmanUser>
+                             IUserPasswordStore<WingmanUser, string>,
+                             IUserSecurityStampStore<WingmanUser, string>,
+                             IUserRoleStore<WingmanUser, string>
     {
         private readonly IDatabaseFactory _databaseFactory;
+
         private WingmanDataContext _dataContext;
         protected WingmanDataContext DataContext
         {
@@ -39,6 +39,7 @@ namespace Wingman.Data.Infrastructure
                 throw new ArgumentNullException(nameof(user));
 
             return Task.Factory.StartNew(() => {
+                user.Id = Guid.NewGuid().ToString();
                 DataContext.Users.Add(user);
                 DataContext.SaveChanges();
             });
@@ -96,8 +97,6 @@ namespace Wingman.Data.Infrastructure
             return Task.FromResult(0);
         }
 
-        
-
         public Task UpdateAsync(WingmanUser user)
         {
             if(user == null)
@@ -152,6 +151,7 @@ namespace Wingman.Data.Infrastructure
                 {
                     DataContext.Roles.Add(new Role
                     {
+                        Id = Guid.NewGuid().ToString(),
                         Name = roleName
                     });
                 }

@@ -11,26 +11,20 @@ using Wingman.Data.Infrastructure;
 
 namespace Wingman.Infrastructure
 {
-    public class AuthorizationRepository : IDisposable, IAuthorizationRepository
+    public class AuthorizationRepository : IAuthorizationRepository, IDisposable
     {
-        private readonly IUserStore<WingmanUser> _userStore;
+        private readonly IUserStore<WingmanUser, string> _userStore;
         private readonly IDatabaseFactory _databaseFactory;
-        private readonly UserManager<WingmanUser> _userManager;
+        private readonly UserManager<WingmanUser, string> _userManager;
 
         private WingmanDataContext db;
-        protected WingmanDataContext Db
-        {
-            get
-            {
-                return db ?? (db = _databaseFactory.GetDataContext());
-            }
-        }
+        protected WingmanDataContext Db => db ?? (db = _databaseFactory.GetDataContext());
 
-        public AuthorizationRepository(IDatabaseFactory databaseFactory, IUserStore<WingmanUser> userStore)
+        public AuthorizationRepository(IDatabaseFactory databaseFactory, IUserStore<WingmanUser, string> userStore)
         {
             _userStore = userStore;
             _databaseFactory = databaseFactory;
-            _userManager = new UserManager<WingmanUser>(userStore);
+            _userManager = new UserManager<WingmanUser, string>(userStore);
         }
 
         public async Task<IdentityResult> RegisterUser(RegistrationModel model)
