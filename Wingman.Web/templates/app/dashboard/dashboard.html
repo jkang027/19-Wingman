@@ -2,23 +2,38 @@
 <h1 id="header">Welcome to Wingman!</h1>
 
 
-<div class="container">
-    <blockquote class="quote-box">
-        <p class="quotation-mark">
-            “
-        </p>
-        <p class="quote-text">
-            Don't believe anything that you read on the internet, it may be fake.
-        </p>
-        <hr>
-        <div class="blog-post-actions">
-            <p class="blog-post-bottom pull-left">
-                Abraham Lincoln
+<div class="container-fluid">
+    <div class="row" style="margin-right">
+        <blockquote class="quote-box col-xs-12 col-sm-6 col-md-4 col-lg-2" ng-repeat="dashboardFeed in feed">
+            <p class="quotation-mark">
+                “
             </p>
-            <p class="blog-post-bottom pull-right">
-                <span class="badge quote-badge">896</span>  ❤
+            <p class="quote-text">
+                {{dashboardFeed.Context}}
             </p>
+            <hr>
+            <div class="blog-post-actions">
+                <p class="blog-post-bottom pull-left">
+                    {{dashboardFeed.TextMessage}}
+                </p>
+                <p class="blog-post-bottom pull-right">
+                    <!--<span class="badge quote-badge">896</span>  ❤-->
+                </p>
+            </div>
+        </blockquote>
+    </div>
+    <div>
+        <h1 id="topwingmenlabel">Top Wingmen</h1>
+    </div>
+    <div class="row">
+        <div class="profile-header-container col-xs-12 col-md-4" ng-repeat="topWingmen in topwingmen">
+            <div class="profile-header-img">
+                <img class="img-circle" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" />
+                <div class="rank-label-container">
+                    <span class="label label-default rank-label">{{topWingmen.UserName}}</span>
+                </div>
+            </div>
         </div>
-    </blockquote>
+    </div>
 </div>
 

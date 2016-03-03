@@ -1,7 +1,7 @@
 ﻿<link href="../../../css/app/activity/activity.css" rel="stylesheet" />
 
 <div class="row">
-    <div class="col-xs-12" ng-repeat="submission in submissions | orderBy:'DateOpened':true"">
+    <div class="col-xs-12" ng-repeat="submission in submissions | orderBy:'DateOpened':true">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="headers">Topic: </div><span>{{submission.Topic.TopicName}} </span>
@@ -11,9 +11,18 @@
                 <span>{{submission.DateOpened | date: 'shortDate'}}</span>
                 <div><button class="btn btn-default" type="submit" ng-click="clicked = !clicked">{{clicked ? 'Hide' : 'Show'}} Answers</button></div>
             </div>
-            <div class="panel-body" ng-show="clicked">
-                <div ng-repeat="response in submission.responses">
-                    <div class="headers">Answer: </div><p>{{response.ResponseText}} </p>
+            <div>
+                <div class="panel-body" ng-show="clicked">
+                    <div class="headers">Answers: </div>
+                    <div ng-repeat="response in submission.responses">
+                        <p ng-show="response.Picked">{{response.ResponseText}} </p>
+                        <button class="btn btn-default" ng-click="pickedResponse(response)">Favorite Answer</button>
+                        <a ng-show="!response.Picked"><i class="fa fa-lock"></i></a>
+                        <a ng-show="!response.Picked"><i class="fa fa-key"></i></a>
+                        <a ng-show="response.Picked"><i class="fa fa-hand-pointer-o"></i></a>
+                        <a ng-show="!response.Picked"><i class="fa fa-gift"></i></a>
+                        <a ng-show="response.Picked"><i class="fa fa-unlock-alt"></i></a>
+                    </div>
                 </div>
             </div>
         </div>

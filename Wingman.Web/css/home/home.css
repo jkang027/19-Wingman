@@ -13,8 +13,8 @@
  }
 
 #navbar-brand {
-    background-color: black;
-    color: white;
+    height: 1.8em;
+    width: 8em;
 }
 
 #register {

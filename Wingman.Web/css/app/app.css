@@ -27,7 +27,7 @@ h1.page-header {
 
 #logoimage {
     height: 1.8em;
-    width: 5em;
+    width: 8em;
 }
 
 #navbar {
@@ -42,6 +42,8 @@ h1.page-header {
 
 #account-button {
     color: white;
+    text-align: center;
+    width: 160px;
 }
 
 .footer {

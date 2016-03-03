@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -53,7 +54,7 @@ namespace Wingman.Controllers
             return Mapper.Map<IEnumerable<SubmissionModel>>(_submissionRepository.GetWhere(s => s.UserId == CurrentUser.Id));
         }
 
-        // GET: api/Submissions/user
+        // GET: api/Submissions/open
         [Route("api/Submissions/open")]
         public IEnumerable<SubmissionModel> GetOpenSubmissions()
         {
@@ -157,6 +158,28 @@ namespace Wingman.Controllers
             _unitOfWork.Commit();
 
             return Ok(Mapper.Map<SubmissionModel>(submission));
+        }
+
+        // POST: api/Submissions/5
+        [HttpPost]
+        [Route("api/Submissions/close")]
+        public IHttpActionResult PickAnswer(ResponseModel response)
+        {
+            var dbResponse = _responseRepository.GetById(response.ResponseId);
+
+            if (dbResponse.Submission.DateClosed == null)
+            {
+                dbResponse.Picked = true;
+                dbResponse.Submission.DateClosed = DateTime.Now;
+
+                _responseRepository.Update(dbResponse);
+                _unitOfWork.Commit();
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         private bool SubmissionExists(int id)

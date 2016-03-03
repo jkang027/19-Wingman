@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Wingman.Core.Models
 {
-    public class DashboardModel
+    public class TopWingmenModel
     {
-        public IEnumerable<SubmissionModel> RecentlyPickedSubmissions { get; set; }
+        public IEnumerable<WingmanUserModel> TopWingmen { get; set; }
     }
 }

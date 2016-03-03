@@ -1,4 +1,4 @@
-﻿angular.module('app').controller('ActivityController', function ($scope, ActivityResource, SubmissionResource, ResponseResource, TopicResource) {
+﻿angular.module('app').controller('ActivityController', function ($scope, ActivityResource, SubmissionResource, ResponseResource, TopicResource, $http, apiUrl) {
 
 
 
@@ -22,13 +22,16 @@
         });
     };
 
-
-
-
+    $scope.pickedResponse = function (response) {
+        $http.post(apiUrl + "submissions/close", response)
+        .success(function () {
+            alert("Success");
+        });
+        activate();
+    };
 
     function activate() {
         $scope.topics = TopicResource.query();
-
         $scope.submissions = ActivityResource.query(function (data) {
             $scope.submissions = data;
             $scope.submissions.forEach(function (submission) {
@@ -36,7 +39,6 @@
             });
         });
     }
-
 
     activate();
 });
