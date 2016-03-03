@@ -1,6 +1,6 @@
 ﻿<link href="../../css/app/app.css" rel="stylesheet" />
 
-<nav class="navbar navbar-default navbar-static-top" id="navbar">
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -11,7 +11,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#/home">
-                Wingman
+                <img src="../../img/wingman_logo_black.png" id="logoimage" />
             </a>
         </div>
 
@@ -26,7 +26,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li class="profileList"><a href="#">Edit Profile</a></li>
                         <li class="profileList"><a href="#">10 Keys</a></li>
-                        <li class="profileList"><a href="#">Buy More Keys</a></li>
+                        <li class="profileList"><a href="/#/app/keys">Buy More Keys</a></li>
                         <li role="separator" class="divider"></li>
                         <li class="profileList"><a href="javascript:void(0);" ng-click="logOut()">Log Out</a></li>
                     </ul>
@@ -44,7 +44,7 @@
             <li><a href="/#/app/activity" class="navbarlink"><i class="fa fa-rss-square fa-2x"></i> Your Activity</a></li>
         </ul>
     </div>
-    <div class="col-md-10 content">
+    <div class="col-md-10 content pull-right">
         <div class="container-fluid">
             <div ui-view id="uiview"></div>
         </div>
@@ -52,7 +52,7 @@
     <footer class="pull-left footer">
         <p class="col-md-12" id="footertext">
             <hr class="divider">
-            Copyright &COPY; 2016 Wingman
+            Copyright &COPY; 2016 Wingman (Not Really)
         </p>
     </footer>
 </div>

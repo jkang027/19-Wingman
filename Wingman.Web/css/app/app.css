@@ -12,12 +12,13 @@ h1.page-header {
 .sidebar {
     padding-left: 0;
     background-color: transparent;
+    position: fixed;
 }
 
 .main-container { 
     background-color: transparent;
     padding-top: 15px;
-    margin-top: -20px;
+    margin-top: 50px;
     border: none;
 }
 
@@ -48,4 +49,8 @@ h1.page-header {
 
 .footer {
     color: white;
+}
+
+.content {
+    padding-top: 10px;
 }
