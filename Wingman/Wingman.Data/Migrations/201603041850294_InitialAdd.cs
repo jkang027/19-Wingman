@@ -18,6 +18,7 @@ namespace Wingman.Data.Migrations
                         Picked = c.Boolean(nullable: false),
                         DateSubmitted = c.DateTime(nullable: false),
                         KeyPrice = c.Int(nullable: false),
+                        Purchased = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.ResponseId)
                 .ForeignKey("dbo.Submissions", t => t.SubmissionId)

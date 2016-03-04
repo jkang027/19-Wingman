@@ -33,7 +33,7 @@ namespace Wingman.Controllers
             // Get 3 random submissions from the database
             var randomClosedSubmissions = _submissionRepository.GetWhere(s => s.Responses.Any(r => r.Picked))
                                                                .OrderBy(s => Guid.NewGuid())
-                                                               .Take(10);
+                                                               .Take(4);
 
             // Reduce responses to these submissions to the first picked submission
             foreach (var submission in randomClosedSubmissions)

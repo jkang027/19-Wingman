@@ -13,7 +13,7 @@ namespace Wingman.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201603032147175_InitialAdd"; }
+            get { return "201603041850294_InitialAdd"; }
         }
         
         string IMigrationMetadata.Source

@@ -47,15 +47,15 @@ namespace Wingman.Controllers
             );
         }
 
-        // GET: api/Submissions/user
-        [Route("api/Submissions/user")]
+        // GET: api/Submissions/User
+        [Route("api/submissions/user")]
         public IEnumerable<SubmissionModel> GetUserSubmissions()
         {
             return Mapper.Map<IEnumerable<SubmissionModel>>(_submissionRepository.GetWhere(s => s.UserId == CurrentUser.Id));
         }
 
-        // GET: api/Submissions/open
-        [Route("api/Submissions/open")]
+        // GET: api/Submissions/Open
+        [Route("api/submissions/open")]
         public IEnumerable<SubmissionModel> GetOpenSubmissions()
         {
             return Mapper.Map<IEnumerable<SubmissionModel>>(_submissionRepository.GetWhere(s => s.DateClosed == null));

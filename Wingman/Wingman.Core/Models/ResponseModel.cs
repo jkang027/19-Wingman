@@ -14,6 +14,6 @@ namespace Wingman.Core.Models
         public bool Picked { get; set; }
         public DateTime DateSubmitted { get; set; }
         public int KeyPrice { get; set; }
-
+        public bool Purchased { get; set; }
     }
 }

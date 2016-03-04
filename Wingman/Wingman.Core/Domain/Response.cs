@@ -15,6 +15,7 @@ namespace Wingman.Core.Domain
         public bool Picked { get; set; }
         public DateTime DateSubmitted { get; set; }
         public int KeyPrice { get; set; }
+        public bool Purchased { get; set; }
       
         public virtual Submission Submission { get; set; }
         public virtual WingmanUser User { get; set; }
@@ -28,6 +29,7 @@ namespace Wingman.Core.Domain
         {
             this.Update(model);
             this.DateSubmitted = DateTime.Now;
+            this.Purchased = false;
         }
 
         public void Update(ResponseModel model)
@@ -39,6 +41,7 @@ namespace Wingman.Core.Domain
             Picked = model.Picked;
             DateSubmitted = model.DateSubmitted;
             KeyPrice = model.KeyPrice;
+            Purchased = model.Purchased;
         }
     }
 }
