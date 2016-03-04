@@ -1,4 +1,4 @@
-﻿angular.module('app', ['ngResource', 'ui.router', 'LocalStorageModule']);
+﻿angular.module('app', ['ngResource', 'ui.router', 'LocalStorageModule', 'stripe.checkout']);
 
 angular.module('app').value('apiUrl', 'http://localhost:63608/api/');
 

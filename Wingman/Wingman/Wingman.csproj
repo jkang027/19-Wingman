@@ -158,6 +158,7 @@
     <Compile Include="Infrastructure\BaseApiController.cs" />
     <Compile Include="Infrastructure\WingmanAuthorizationServerProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\KeyPaymentRequest.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
