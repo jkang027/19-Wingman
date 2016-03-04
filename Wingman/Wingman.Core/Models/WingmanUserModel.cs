@@ -15,5 +15,14 @@ namespace Wingman.Core.Models
         public decimal? AverageRating { get; set; }
         public int? NumberOfAnswersPicked { get; set; }
         public int? NumberOfAnswersSubmitted { get; set; }
+
+        public class Profile : WingmanUserModel
+        {
+            public string Email { get; set; }
+            public string Telephone { get; set; }
+            public Gender Gender { get; set; }
+            public int? NumberOfFlags { get; set; }
+            public int? NumberOfKeys { get; set; }
+        }
     }
 }

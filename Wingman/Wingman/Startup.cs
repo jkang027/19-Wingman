@@ -65,8 +65,6 @@ namespace PropertyManager.Api
             container.Register<IDatabaseFactory, DatabaseFactory>(Lifestyle.Scoped);
             container.Register<IUnitOfWork, UnitOfWork>();
 
-
-            
             container.Register<IResponseRepository, ResponseRepository>();
             container.Register<IRoleRepository, RoleRepository>();
             container.Register<ISubmissionRepository, SubmissionRepository>();

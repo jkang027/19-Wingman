@@ -1,7 +1,5 @@
 ﻿angular.module('app').controller('ActivityController', function ($scope, ActivityResource, SubmissionResource, ResponseResource, TopicResource, $http, apiUrl) {
 
-
-
     $scope.topicselect = function (topic) {
         $scope.Topic = topic;
         $scope.TopicId = topic.TopicId;

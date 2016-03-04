@@ -11,6 +11,7 @@ namespace Wingman.Infrastructure
     {
         public WingmanDataContext() : base("Wingman")
         {
+            var ensureDllIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
 
         //SQL Tables

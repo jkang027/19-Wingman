@@ -7,13 +7,13 @@ namespace Wingman.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class MadePropertiesDynamic : IMigrationMetadata
+    public sealed partial class InitialAdd : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(MadePropertiesDynamic));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialAdd));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603012308264_MadePropertiesDynamic"; }
+            get { return "201603032147175_InitialAdd"; }
         }
         
         string IMigrationMetadata.Source

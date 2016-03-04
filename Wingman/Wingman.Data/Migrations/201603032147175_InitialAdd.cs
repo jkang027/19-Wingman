@@ -67,8 +67,6 @@ namespace Wingman.Data.Migrations
                         NumberOfKeys = c.Int(),
                         NumberOfRatings = c.Int(),
                         AverageRating = c.Decimal(precision: 18, scale: 2),
-                        NumberOfAnswersPicked = c.Int(),
-                        NumberOfAnswersSubmitted = c.Int(),
                     })
                 .PrimaryKey(t => t.Id);
             

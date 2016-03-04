@@ -10,16 +10,20 @@ using Wingman.Core.Models;
 using Wingman.Core.Infrastructure;
 using Wingman.Core.Repository;
 using AutoMapper;
+using System.Web.Http.Description;
 
 namespace Wingman.Controllers
 {
     public class AccountsController : BaseApiController
     {
         private readonly IAuthorizationRepository _authRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public AccountsController(IAuthorizationRepository authRepository, IWingmanUserRepository wingmanUserRepository) : base(wingmanUserRepository)
+        public AccountsController(IAuthorizationRepository authRepository, IWingmanUserRepository wingmanUserRepository, IUnitOfWork unitOfWork) : base(wingmanUserRepository)
         {
             _authRepository = authRepository;
+            _unitOfWork = unitOfWork;
+           
         }
 
         [AllowAnonymous]
@@ -44,6 +48,31 @@ namespace Wingman.Controllers
             {
                 return BadRequest("Registration form was invalid.");
             }
+        }
+
+        [Route("api/accounts/currentuser")]
+        [HttpGet]
+        [ResponseType(typeof(WingmanUserModel.Profile))]
+        public IHttpActionResult GetCurrentUser()
+        {
+            return Ok(Mapper.Map<WingmanUserModel.Profile>(CurrentUser));
+        }
+
+        [Route("api/accounts/currentuser")]
+        [HttpPut]
+        public IHttpActionResult UpdateCurrentUser(string id, WingmanUserModel.Profile user)
+        {
+            // check to see that id == user.Id
+
+            // check to see that user.Id == CurrentUser.Id
+          
+            // update the user
+
+            // call repository.update
+       
+            // call unitofwork.commit
+        
+            return StatusCode(HttpStatusCode.NoContent);
         }
     }
 }

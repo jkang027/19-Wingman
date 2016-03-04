@@ -33,6 +33,7 @@ namespace Wingman
             Mapper.CreateMap<Response, ResponseModel>();
             Mapper.CreateMap<Submission, SubmissionModel>();
             Mapper.CreateMap<WingmanUser, WingmanUserModel>();
+            Mapper.CreateMap<WingmanUser, WingmanUserModel.Profile>();
             Mapper.CreateMap<Topic, TopicModel>();
         }
     }

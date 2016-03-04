@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 using Wingman.Core.Models;
@@ -20,12 +21,11 @@ namespace Wingman.Core.Domain
         public virtual WingmanUser User { get; set; }
         public virtual Topic Topic { get; set; }
 
-
-
         public Submission()
         {
-
+            Responses = new Collection<Response>();
         }
+
 
         public Submission(SubmissionModel model)
         {
