@@ -44,6 +44,13 @@ namespace Wingman.Controllers
             return Ok(Mapper.Map<ResponseModel>(response));
         }
 
+        // GET: api/Responses/User
+        [Route("api/responses/user")]
+        public IEnumerable<ResponseModel> GetUserResponses()
+        {
+            return Mapper.Map<IEnumerable<ResponseModel>>(_responseRepository.GetWhere(r => r.UserId == CurrentUser.Id));
+        }
+
         // PUT: api/Responses/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutResponse(int id, ResponseModel response)

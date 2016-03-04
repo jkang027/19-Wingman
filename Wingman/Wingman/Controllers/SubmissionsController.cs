@@ -38,7 +38,7 @@ namespace Wingman.Controllers
             return Mapper.Map<IEnumerable<SubmissionModel>>(_submissionRepository.GetAll());
         }
 
-        //GET: api/Submission/5/Response
+        //GET: api/Submission/5/Responses
         [Route("api/submissions/{SubmissionId}/responses")]
         public IEnumerable<ResponseModel> GetResponseForSubmission(int SubmissionId)
         {
@@ -59,6 +59,20 @@ namespace Wingman.Controllers
         public IEnumerable<SubmissionModel> GetOpenSubmissions()
         {
             return Mapper.Map<IEnumerable<SubmissionModel>>(_submissionRepository.GetWhere(s => s.DateClosed == null));
+        }
+
+        // GET: api/Submissions/5/Responses/Paid
+        [Route("api/submissions/{SubmissionId}/responses/paid")]
+        public IEnumerable<ResponseModel> GetPaidResponses(ResponseModel response)
+        {
+            return Mapper.Map<IEnumerable<ResponseModel>>(_responseRepository.GetWhere(r => r.Purchased == true));
+        }
+
+        // GET: api/Submissions/5/Responses/Unpaid
+        [Route("api/submissions/{SubmissionId}/responses/unpaid")]
+        public IEnumerable<ResponseModel> GetUnpaidResponses(ResponseModel response)
+        {
+            return Mapper.Map<IEnumerable<ResponseModel>>(_responseRepository.GetWhere(r => r.Purchased == false));
         }
 
         // GET: api/Submissions/5
@@ -162,7 +176,7 @@ namespace Wingman.Controllers
 
         // POST: api/Submissions/5
         [HttpPost]
-        [Route("api/Submissions/close")]
+        [Route("api/submissions/close")]
         public IHttpActionResult PickAnswer(ResponseModel response)
         {
             var dbResponse = _responseRepository.GetById(response.ResponseId);

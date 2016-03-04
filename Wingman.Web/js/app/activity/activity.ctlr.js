@@ -30,11 +30,11 @@
 
     function activate() {
         $scope.topics = TopicResource.query();
-        $scope.submissions = ActivityResource.query(function (data) {
-            $scope.submissions = data;
-            $scope.submissions.forEach(function (submission) {
-                submission.responses = ResponseResource.responses({ SubmissionId: submission.SubmissionId });
-            });
+        ActivityResource.getUserSubmissions().then(function (response) {
+            $scope.submissions = response;
+        });
+        ActivityResource.getUserResponses().then(function (response) {
+            $scope.responses = response;
         });
     }
 
