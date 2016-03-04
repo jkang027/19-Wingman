@@ -15,6 +15,7 @@ using Wingman;
 using Wingman.Core.Domain;
 using Wingman.Core.Infrastructure;
 using Wingman.Core.Repository;
+using Wingman.Core.Services.Finance;
 using Wingman.Data.Infrastructure;
 using Wingman.Data.Repository;
 using Wingman.Infrastructure;
@@ -73,6 +74,7 @@ namespace PropertyManager.Api
             container.Register<IWingmanUserRepository, WingmanUserRepository>();
             container.Register<IUserStore<WingmanUser, string>, UserStore>(Lifestyle.Scoped);
             container.Register<IAuthorizationRepository, AuthorizationRepository>(Lifestyle.Scoped);
+            container.Register<IKeyPaymentService, StripeKeyPaymentService>();
 
             // more code to facilitate a scoped lifestyle
             app.Use(async (context, next) => 

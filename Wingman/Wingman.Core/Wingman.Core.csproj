@@ -34,6 +34,14 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Stripe.net, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stripe.net.5.3.0\lib\Stripe.net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -69,6 +77,8 @@
     <Compile Include="Repository\ITopicRepository.cs" />
     <Compile Include="Repository\IUserRoleRepository.cs" />
     <Compile Include="Repository\IWingmanUserRepository.cs" />
+    <Compile Include="Services\Finance\IKeyPaymentService.cs" />
+    <Compile Include="Services\Finance\StripeKeyPaymentService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

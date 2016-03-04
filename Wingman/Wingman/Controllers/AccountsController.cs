@@ -11,16 +11,20 @@ using Wingman.Core.Infrastructure;
 using Wingman.Core.Repository;
 using AutoMapper;
 using System.Web.Http.Description;
+using Wingman.Core.Services.Finance;
+using Wingman.Requests;
 
 namespace Wingman.Controllers
 {
     public class AccountsController : BaseApiController
     {
+        private readonly IKeyPaymentService _keyPaymentService;
         private readonly IAuthorizationRepository _authRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public AccountsController(IAuthorizationRepository authRepository, IWingmanUserRepository wingmanUserRepository, IUnitOfWork unitOfWork) : base(wingmanUserRepository)
+        public AccountsController(IKeyPaymentService keyPaymentService, IAuthorizationRepository authRepository, IWingmanUserRepository wingmanUserRepository, IUnitOfWork unitOfWork) : base(wingmanUserRepository)
         {
+            _keyPaymentService = keyPaymentService;
             _authRepository = authRepository;
             _unitOfWork = unitOfWork;
            
@@ -73,6 +77,14 @@ namespace Wingman.Controllers
             // call unitofwork.commit
         
             return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        [Route("api/accounts/payforkeys")]
+        public IHttpActionResult PayForKeys(KeyPaymentRequest request)
+        {
+            _keyPaymentService.BuyKeys(CurrentUser, request.token, request.numberOfKeys);
+
+            return Ok();
         }
     }
 }
