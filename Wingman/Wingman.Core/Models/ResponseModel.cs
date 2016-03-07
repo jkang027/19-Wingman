@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Wingman.Core.Domain;
 
 namespace Wingman.Core.Models
 {
@@ -15,5 +16,7 @@ namespace Wingman.Core.Models
         public DateTime DateSubmitted { get; set; }
         public int KeyPrice { get; set; }
         public bool Purchased { get; set; }
+
+        public virtual SubmissionModel Submission { get; set; }
     }
 }

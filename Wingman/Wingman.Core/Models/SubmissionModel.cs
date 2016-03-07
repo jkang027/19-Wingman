@@ -17,6 +17,5 @@ namespace Wingman.Core.Models
         public DateTime? DateClosed { get; set; }
 
         public virtual TopicModel Topic { get; set; }
-        public virtual ICollection<ResponseModel> Responses { get; set; }
     }
 }

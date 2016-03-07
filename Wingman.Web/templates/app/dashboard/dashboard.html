@@ -3,24 +3,26 @@
 
 
 <div class="container-fluid">
-    <div class="row" style="margin-right">
-        <blockquote class="quote-box col-xs-12 col-sm-6" ng-repeat="dashboardFeed in feed">
-            <p class="quotation-mark">
-                “
-            </p>
-            <p class="quote-text">
-                {{dashboardFeed.Context}}
-            </p>
-            <hr>
-            <div class="blog-post-actions">
-                <p class="blog-post-bottom pull-left">
-                    {{dashboardFeed.TextMessage}}
+    <div class="row">
+        <div class="quote-box-div col-xs-12 col-sm-3" ng-repeat="dashboardFeed in feed">
+            <blockquote class="col-xs-12 quote-box" >
+                <p class="quotation-mark">
+                    “
                 </p>
-                <p class="blog-post-bottom pull-right">
-                    <!--<span class="badge quote-badge">896</span>  ❤-->
+                <p class="quote-text">
+                    {{dashboardFeed.Context}}
                 </p>
-            </div>
-        </blockquote>
+                <hr>
+                <div class="blog-post-actions">
+                    <p class="blog-post-bottom pull-left">
+                        {{dashboardFeed.TextMessage}}
+                    </p>
+                    <p class="blog-post-bottom pull-right">
+                        <!--<span class="badge quote-badge">896</span>  ❤-->
+                    </p>
+                </div>
+            </blockquote>
+        </div>
     </div>
     <div>
         <h1 id="topwingmenlabel">Top 3 Wingmen</h1>
