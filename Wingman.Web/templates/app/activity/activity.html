@@ -16,7 +16,7 @@
                 <div>
                     <div class="panel-body" ng-show="clicked">
                         <div class="headers">Answers: </div>
-                        <div ng-repeat="response in submission.responses">
+                        <div ng-repeat="response in submission.Responses">
                             <p ng-show="response.Picked">{{response.ResponseText}} </p>
                             <button class="btn btn-default" ng-click="pickedResponse(response)">Favorite Answer</button>
                             <a ng-show="!response.Picked"><i class="fa fa-lock"></i></a>

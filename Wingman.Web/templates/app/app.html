@@ -34,18 +34,20 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-<div class="container-fluid main-container">
-    <div class="col-md-2 sidebar">
-        <ul class="nav nav-pills nav-stacked">
-            <li><a href="#/app/dashboard" class="navbarlink"><i class="fa fa-tachometer fa-2x"></i> Dashboard</a></li>
-            <li><a href="/#/app/submission" class="navbarlink"><i class="fa fa-question-circle fa-2x"></i> Ask a Question</a></li>
-            <li><a href="/#/app/response" class="navbarlink"><i class="fa fa-tablet fa-2x"></i> Be a Wingman</a></li>
-            <li><a href="/#/app/activity" class="navbarlink"><i class="fa fa-rss-square fa-2x"></i> Your Activity</a></li>
-        </ul>
-    </div>
-    <div class="col-md-10 content pull-right">
-        <div class="container-fluid">
-            <div ui-view id="uiview"></div>
+<div class="row">
+    <div class="container-fluid main-container">
+        <div class="col-xs-12 col-sm-2 sidebar">
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="#/app/dashboard" class="navbarlink"><i class="fa fa-tachometer fa-2x"></i> Dashboard</a></li>
+                <li><a href="/#/app/submission" class="navbarlink"><i class="fa fa-question-circle fa-2x"></i> Ask a Question</a></li>
+                <li><a href="/#/app/response" class="navbarlink"><i class="fa fa-tablet fa-2x"></i> Be a Wingman</a></li>
+                <li><a href="/#/app/activity" class="navbarlink"><i class="fa fa-rss-square fa-2x"></i> Your Activity</a></li>
+            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-10 content">
+            <div class="container-fluid">
+                <div ui-view id="uiview"></div>
+            </div>
         </div>
     </div>
 </div>

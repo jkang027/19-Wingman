@@ -1,32 +1,34 @@
 ﻿<link href="../../../css/app/submission/submission.css" rel="stylesheet" />
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <i class="fa fa-question fa-3x"></i>  Ask a Question
-    </div>
-    <div class="panel-body">
-        <div class="form-group">
-            <label class="submissionLabels">Context</label>
-            <textarea id="inputContext" class="form-control" placeholder="Enter context..." ng-model="newSubmission.Context"></textarea>
+<div class="col-sm-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-question fa-3x"></i>  Ask a Question
         </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="submissionLabels">Context</label>
+                <textarea id="inputContext" class="form-control" placeholder="Enter context..." ng-model="newSubmission.Context"></textarea>
+            </div>
 
-        <div class="form-group">
-            <label class="submissionLabels">Text Message</label>
-            <textarea id="inputTextMessage" class="form-control" placeholder="Enter message..." ng-model="newSubmission.TextMessage"></textarea>
+            <div class="form-group">
+                <label class="submissionLabels">Text Message</label>
+                <textarea id="inputTextMessage" class="form-control" placeholder="Enter message..." ng-model="newSubmission.TextMessage"></textarea>
+            </div>
+
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{Topic.TopicName || "Topic"}}
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <li ng-repeat="topic in topics"><a ng-click="topicselect(topic)">{{topic.TopicName}}</a></li>
+                </ul>
+            </div>
+
         </div>
-
-        <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{Topic.TopicName || "Topic"}}
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <li ng-repeat="topic in topics"><a ng-click="topicselect(topic)">{{topic.TopicName}}</a></li>                              
-            </ul>
+        <div class="panel-footer clearfix">
+            <button class="btn btn-success pull-right" ng-click="createSubmission()">Submit</button>
         </div>
-
-    </div>
-    <div class="panel-footer clearfix">
-        <button class="btn btn-success pull-right" ng-click="createSubmission()">Submit</button>
     </div>
 </div>
