@@ -1,26 +1,21 @@
-﻿blockquote{
-    border-left:none
+﻿blockquote {
+    border-left: none;
 }
 
-.quote-badge{
+.quote-badge {
     background-color: rgba(0, 0, 0, 0.2);   
 }
 
-.quote-box{
-    margin-left: 20px;
-    overflow: hidden;
-    margin-top: -50px;
-    padding-top: -100px;
+.quote-box {
+    margin-left: 10px;
+    margin-right:10px;
     border-radius: 17px;
     background-color: cornflowerblue;
-    margin-top: 25px;
-    color:white;
-    width: 325px;
+    color: white;
     box-shadow: 2px 2px 2px 2px #E0E0E0;
-    
 }
 
-.quotation-mark{
+.quotation-mark {
     
     margin-top: -10px;
     font-weight: bold;
@@ -29,7 +24,7 @@
     font-family: "Times New Roman", Georgia, Serif;
 }
 
-.quote-text{
+.quote-text {
     font-size: 19px;
     margin-top: -65px;
 }
@@ -43,7 +38,7 @@
 /**
  * Profile image component
  */
-.profile-header-container{
+.profile-header-container {
     margin: 0 auto;
     text-align: center;
 }

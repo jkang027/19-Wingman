@@ -12,7 +12,6 @@ h1.page-header {
 .sidebar {
     padding-left: 0;
     background-color: transparent;
-    position: fixed;
 }
 
 .main-container { 
